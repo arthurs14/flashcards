@@ -23,10 +23,6 @@ app.post("/decks", async (req: Request, res: Response) => {
 });
 
 // RUN + CONNECT TO DATABASE
-mongoose
-  .connect(
-    "mongodb+srv://flashcards:bkuO6p52MX9DYxmw@flashcards.8curqqv.mongodb.net/flashcards?retryWrites=true&w=majority"
-  )
-  .then(() => {
-    app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-  });
+mongoose.connect("enter url").then(() => {
+  app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+});
