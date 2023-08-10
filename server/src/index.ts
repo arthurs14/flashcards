@@ -1,6 +1,10 @@
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
+import { config } from "dotenv";
 import Deck from "./models/Deck";
+
+// ENVIRONMENT VARIABLES
+config();
 
 const app = express();
 
@@ -23,6 +27,6 @@ app.post("/decks", async (req: Request, res: Response) => {
 });
 
 // RUN + CONNECT TO DATABASE
-mongoose.connect("enter url").then(() => {
+mongoose.connect(process.env.MONGO_URL!).then(() => {
   app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 });
