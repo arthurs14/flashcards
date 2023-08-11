@@ -46,6 +46,17 @@ app.post("/decks", async (req: Request, res: Response) => {
   }
 });
 
+app.delete("/decks/:deckId", async (req: Request, res: Response) => {
+  try {
+    const deckId = req.params.deckId;
+    const deck = await Deck.findByIdAndDelete(deckId);
+
+    res.status(204).json({ status: "success", data: deck });
+  } catch (err) {
+    res.status(404).json({ status: "fail", message: err });
+  }
+});
+
 // RUN + CONNECT TO DATABASE
 mongoose.connect(process.env.MONGO_URL!).then(() => {
   app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
